@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #0f103a;
+  --color-navy-700: #23255e;
+  --color-brand: #ef3d23;
+  --color-brand-600: #d6321a;
+  --color-mist: #f6f6f9;
+  --color-ink: #1d1e2c;
+  --color-muted: #5d5f73;
+  --font-sans: var(--font-roboto);
+  --font-display: var(--font-montserrat);
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-montserrat), sans-serif;
+  letter-spacing: -0.01em;
+}
