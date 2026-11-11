@@ -1,9 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getSessionCookie } from "better-auth/cookies";
 
-// Fast cookie check only; the admin layout does the real session lookup.
+// Better Auth's session cookie ("__Secure-" prefixed on HTTPS). We check the
+// cookie name directly instead of importing better-auth/cookies, which pulls
+// Node-only code into the Edge runtime. The admin layout does the real check.
+const SESSION_COOKIES = ["better-auth.session_token", "__Secure-better-auth.session_token"];
+
 export function middleware(request: NextRequest) {
-  if (!getSessionCookie(request)) {
+  if (!SESSION_COOKIES.some((name) => request.cookies.has(name))) {
     const url = new URL("/sign-in", request.url);
     url.searchParams.set("next", request.nextUrl.pathname);
     return NextResponse.redirect(url);
