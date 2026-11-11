@@ -1,8 +1,11 @@
-import { neon } from "@neondatabase/serverless";
+import { neon, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 
 const url = process.env.DATABASE_URL;
+
+// Optional override for local testing against a Neon-compatible HTTP endpoint.
+if (process.env.NEON_FETCH_ENDPOINT) neonConfig.fetchEndpoint = process.env.NEON_FETCH_ENDPOINT;
 
 /**
  * Drizzle client over Neon's HTTP driver. DATABASE_URL must be set at runtime;

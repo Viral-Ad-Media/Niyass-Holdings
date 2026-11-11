@@ -31,6 +31,10 @@ npm run dev
 
 Then open `/sign-in`, choose "Create the admin account" with an email listed in `ADMIN_EMAILS`. Sign-up is refused for any other email.
 
+## Database
+
+The production database is the Neon project **niyass-holdings** (`delicate-art-54479423`, AWS us-east-2). Migration `0000_init` has already been applied there. Copy the pooled connection string from the Neon console (project → Connect) into `DATABASE_URL` on your host.
+
 ## Scripts
 
 - `npm run db:generate` – generate a migration after editing `src/db/schema.ts`
